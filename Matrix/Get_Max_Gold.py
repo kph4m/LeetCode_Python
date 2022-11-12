@@ -110,13 +110,3 @@ print("Actual Output: ", getMaximumGold([[1,0,7],
         [3,4,5],
         [0,3,0],
         [9,0,20]]))
-
-
-
-    
-
-
-
-
-
-        
