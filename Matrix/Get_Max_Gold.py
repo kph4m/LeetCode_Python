@@ -28,7 +28,7 @@ Input = [[1,0,7],
         [0,3,0],
         [9,0,20]]
 
-Output = 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 = 
+Output = 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 = 28
 
 Match
 - DFS
@@ -79,7 +79,7 @@ def getMaximumGold(grid):
     def dfs(i,j):
         gold = grid[i][j]
 
-        # assign it 0 so u don't visit it again
+        # assign it 0 so you don't visit it again
         grid[i][j] = 0
         result = 0
 
