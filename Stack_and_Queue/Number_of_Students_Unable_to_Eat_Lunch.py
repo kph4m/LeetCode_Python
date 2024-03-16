@@ -43,8 +43,9 @@ Match
 - Stack, Queue
 
 Plan
-- Create a dictionary where key = student preference, value = number of students with that preference
+- Create count variables for each type of student preference OR Create a dictionary where key = student preference, value = number of students with that preference 
 - Loop through the students and decrement the count for the student preference
+    - if the count for the student preference is 0, there are no other students that can eat the sandwich thats currently in the queue so the queue of sanwiches wont be able to be cycled through
 - Return the sum of the number of students that have a preference of 0 and 1
 
 Implement
@@ -53,23 +54,52 @@ Review
 
 Evaluate
 """
+# Count Variables
+# Time Complexity: O(n), where n is the length of sandwiches and students
+# Space Complexity: O(1), count variables are constant space
+def countStudents(students, sandwiches):
+        squareStudents = roundStudents = 0
+
+        # Get count of all student preferences
+        for student in students:
+            if student == 0:
+                squareStudents += 1
+            else:
+                roundStudents += 1
+        
+        for sandwich in sandwiches:
+            if sandwich == 0:
+                # if the count of the student preference for the current sanwich is 0, there are no other students that can eat the sandwich thats currently in the queue so the queue of sanwiches wont be able to be cycled through
+                if squareStudents == 0:
+                    break
+                else:
+                    # decrement when student able to get their preference
+                    squareStudents -= 1
+            elif sandwich == 1:
+                # if the count of the student preference for the current sanwich is 0, there are no other students that can eat the sandwich thats currently in the queue so the queue of sanwiches wont be able to be cycled through
+                if roundStudents == 0:
+                    break
+                else:
+                    # decrement when student able to get their preference
+                    roundStudents -= 1
+        
+        # Return the total number of students without lunch. 
+        return roundStudents + squareStudents
 
 # Using Counter
 # Time Complexity: O(n), where n is the length of the sandwiches array
 # Space Complexity: O(k), where k is the number of unique student preferences
 from collections import Counter
 def countStudents(students, sandwiches):
-
     studentPreferenceCount = Counter(students)
 
     for sandwich in sandwiches:
-        # if the count of the student preference for the current sanwich is 0, there are no other students that can eat the sandwich thats currentl y in the queue so the queue of sanwiches wont be able to be cycled through
+        # if the count of the student preference for the current sanwich is 0, there are no other students that can eat the sandwich thats currently in the queue so the queue of sanwiches wont be able to be cycled through
         if studentPreferenceCount[sandwich] == 0:
             break
         studentPreferenceCount[sandwich] -= 1
 
     return studentPreferenceCount[0] + studentPreferenceCount[1]
-
 
 # Not Using Counter: Have to account for missing key values
 # Little bit slower
